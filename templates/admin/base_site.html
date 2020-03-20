@@ -1,0 +1,133 @@
+{% extends 'admin/base.html' %}
+{% load static %}
+
+{% block branding %}
+   <h1 id="head">
+     <a href="#"><img src="https://fontmeme.com/permalink/200318/bd72396d4313c9786f7c3c30fae05240.png" alt="netflix-font" border="0" height="50" width="160"></a>
+
+   </h1>
+{% endblock %}
+
+{% block extrastyle %}
+<style>
+#header {
+    background: black;
+    color:white;
+}
+
+@font-face {
+font-family: "gta5font";
+src: url("{% static 'css/fonts/gta5font.ttf' %}");
+}
+
+body {
+font-family: gta5font;
+font-size:44px;
+}
+
+a {
+font-family: gta5font;
+font-size:25px;
+
+}
+
+h1 {
+    font-size:44px;
+
+}
+
+.submit-row a.deletelink {
+
+    background: #ba2121;
+   font-size:20px;
+    color: #fff;
+}
+
+
+
+
+
+element.style {
+}
+a:link, a:visited {
+    color: #447e9b;
+    text-decoration: none;
+}
+
+#content-related .actionlist li {
+
+    font-size: 25px;
+}
+
+.mini {
+    font-size: 25px;
+}
+
+#content-related .module h2 {
+
+    font-size: 34px;
+
+}
+
+#content-related h3 {
+    font-size: 28px;
+
+}
+
+a.section:link, a.section:visited {
+    color: #fff;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.module caption, .inline-group h2 {
+    background: black ;
+}
+div.breadcrumbs {
+    background: red;
+    font-size:25px;
+    color: #c4dce8;
+
+#user-tools {
+    font-size: 75px; /* ne marche pas avec media smartphone  */
+}
+
+#changelist #toolbar form #searchbar {
+
+    vertical-align: none; /* A changer */
+
+}
+
+.button.default, input[type=submit].default, .submit-row input.default {
+    float: left; /* disable that*/
+    border: none;
+    font-weight: 400;
+    background: #417690;
+}
+
+
+label {
+    font-size: 30px;
+}
+
+
+.submit-row {
+    padding: 12px 14px;
+    margin: 0 0 20px;
+    background: #f8f8f8;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    text-align: center;
+    /* overflow: hidden; */
+}
+
+#changelist #toolbar form #searchbar:disabled {
+
+        vertical-align: middle;
+
+}
+</style>
+
+
+{% endblock %}
+

@@ -1,0 +1,394 @@
+{% load static %}
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Movies</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+
+	<!-- Link Swiper's CSS -->
+	<link rel="stylesheet" href="{% static 'css/swiper.min.css' %}">
+	<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+	<script src="{% static 'js/jquery-3.1.1.min.js' %}"></script>
+	<script src="{% static 'js/script.js' %}"></script>
+
+
+
+	<!-- Demo styles -->
+	<style>
+
+
+	@font-face {
+font-family: "gta5font";
+src: url("{% static 'css/fonts/gta5font.ttf' %}");
+
+}
+
+
+body {
+font-family: gta5font;
+font-weight:normal;
+font-style:normal;
+font-size:42px;
+}
+
+
+}
+
+.carousel-inner .item img {
+    width: 100%;
+
+}
+
+.content {
+	margin-top: -157px;
+}
+ .carousel-inner  {
+
+    height: 564px;
+  }
+
+.carousel .item {
+  height: 300px;
+}
+
+.item img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-height: 300px;
+}
+
+
+.container {
+    height: 700px;
+    
+
+}
+
+
+.panel h2 {
+font-size:42px;
+
+}
+
+.panel {
+    margin-bottom: 20px;
+    background-color: #191919;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05);
+    box-shadow: 0 1px 1px rgba(0,0,0,.05);
+
+}
+
+body {
+	background-color:#191919;
+}
+	  .carousel-inner img {
+    width: 100%;
+    height: 100%;
+  }
+
+.header {
+	background-color:black;
+	height:91px;
+
+}
+
+
+.header img{
+	margin-top:8px;
+	height:80px;
+}
+
+
+.header img:hover{
+	width:120px;
+	height:80px;
+    transition: 0.4s;
+}
+
+
+
+* {
+  box-sizing: border-box;
+}
+
+a img: {
+
+  transition: transform 3s;
+  width: 210px;
+  height: 310px;
+  transition-timing-function: linear;
+}
+
+a img:hover {
+  -ms-transform: scale(1.1); /* IE 9 */
+  -webkit-transform: scale(1.1); /* Safari 3-8 */
+  transform: scale(1.1);
+}
+
+
+.searchsubmit {
+    margin-top: 20px;
+}
+
+
+
+
+.search {
+    margin: 18px 22px;
+}
+
+.searchfield {
+    font-size: 20px;
+    color: white;
+    margin-top: 14px;
+}
+.menu > ul > li > ul > li > a {
+    float: left;
+    padding: 5px 10px;
+    text-decoration: none;
+    color: white;
+    width: calc(100% - 20px);
+    font-size: 20px;
+}
+
+.menu > ul > li > a {
+
+    float: left;
+    margin-top: 15px;
+    text-decoration: none;
+    color: white;
+    font-size: 26px;
+    padding: 15px 7px;
+
+}
+
+.menu > ul > li > ul {
+    display: none;
+    position: absolute;
+    top: 58px;
+    background-color: #000;
+    width: 200px;
+}
+
+.search {
+
+    margin: 15px 20px;
+}
+
+	</style>
+</head>
+<body>
+	<div class="wrapper">
+
+		<header class="header">
+			<div class="logo"><a href="{% url 'home' %}"><img src="https://fontmeme.com/permalink/200221/c1e6b0afe27ebe1cabc79ca299849736.png" alt="netflix-font" border="0"></a></div>
+			<nav class="menu">
+				<ul>
+					<li><a href="{% url 'home' %}">Home</a></li>
+					<li><a>Genres</a>
+						<ul>
+							<li><a href="{% url 'movies:movie_category' 'action' %}">Action</a></li>
+							<li><a href="{% url 'movies:movie_category' 'comedy' %}">Comedy</a></li>
+							<li><a href="{% url 'movies:movie_category' 'drama' %}">Drama</a></li>
+							<li><a href="{% url 'movies:movie_category' 'romance' %}">Romance</a></li>
+						</ul>
+					</li>
+					<li><a>Year</a>
+						<ul>
+							<li><a href="{% url 'movies:movie_year' '2019' %}">2019</a></li>
+							<li><a href="{% url 'movies:movie_year' '2018' %}">2018</a></li>
+							<li><a href="{% url 'movies:movie_year' '2017' %}">2017</a></li>
+							<li><a href="{% url 'movies:movie_year' '2016' %}">2016</a></li>
+						</ul>
+					</li>
+					<li><a>Language</a>
+						<ul>
+							<li><a href="{% url 'movies:movie_language' 'english' %}">English</a></li>
+							<li><a href="{% url 'movies:movie_language' 'german' %}">German</a></li>
+						</ul>
+					</li>
+
+					<li class="mobsearch">
+						<form class="mobform" method="GET" >
+							<input type="text" name="query" value="{{ request.GET.q }}"  class="mobsearchfield" placeholder="Search...">
+							<input type="submit" value="" class="mobsearchsubmit">
+						</form>
+					</li>
+				</ul>
+			</nav>
+			<form class="search" method="GET" action="{% url 'movies:movie_search' %}">
+				<input type="text" name="query" value="{{ request.GET.q }}"  class="searchfield" placeholder="Search...">
+				<input type="submit" value="" class="searchsubmit">
+			</form>
+
+			<div class="toggle"><img src="img/menu.svg"></div>
+		</header>
+	</div>
+
+		<!-- Swiper -->
+
+
+		{% block body %}
+		{% endblock body %}
+
+		<footer class="footer">
+			<div class="copyright"><p>Copyright &copy 2017 www.focusoncode.com</p></div>
+			<div class="footermenu">
+				<ul>
+					<li><a href="{% url 'home' %}">Home</a></li>
+					<li><a href="#">Contact</a></li>
+					<li><a href="#">Terms and conditions</a></li>
+				</ul>
+			</div>
+			<div class="tags">
+				<ul>
+					<li>Watch Free Movies Trailers</li>
+					<li>Movie Trailers</li>
+					<li>English Subtitled Movies Trailers</li>
+					<li>Latest Movies Trailers</li>
+					<li>New Movies Trailers</li>
+
+				</ul>
+			</div>
+
+		</footer>
+
+		<!-- Swiper JS -->
+		<script src="{% static 'js/swiper.min.js' %}"></script>
+
+		<!-- Initialize Swiper -->
+		<script>
+			$(document).ready(function(){
+
+
+				var swiper = new Swiper('.homeslider > .swiper-container', {
+					pagination: '.swiper-pagination',
+					paginationClickable: true,
+					preventClicks:false,
+					preventClicksPropagation:false,
+					effect:'fade',
+					breakpoints: {
+						320: {
+							height:200
+						},
+
+						480: {
+							height:300
+						},
+
+						768: {
+							height:400
+						},
+						1024: {
+							height:500
+						}
+					}
+				});
+
+				var recentswiper = new Swiper('.recentslider > .swiper-container', {
+					nextButton: '.recent-next',
+					prevButton: '.recent-prev',
+					slidesPerView: 8,
+					paginationClickable: true,
+					preventClicks:false,
+					preventClicksPropagation:false,
+					spaceBetween: 10,
+					breakpoints: {
+						320: {
+							slidesPerView: 3,
+							spaceBetween: 5
+						},
+
+						480: {
+							slidesPerView: 3,
+							spaceBetween: 5
+						},
+
+						768: {
+							slidesPerView: 5,
+							spaceBetween: 5
+						},
+						1024: {
+							slidesPerView: 6,
+							spaceBetween: 10
+						}
+					}
+				});
+
+				var mostswiper = new Swiper('.mostslider > .swiper-container', {
+					nextButton: '.most-next',
+					prevButton: '.most-prev',
+					slidesPerView: 8,
+					paginationClickable: true,
+					preventClicks:false,
+					preventClicksPropagation:false,
+					spaceBetween: 10,
+					breakpoints: {
+						320: {
+							slidesPerView: 3,
+							spaceBetween: 5
+						},
+
+						480: {
+							slidesPerView: 3,
+							spaceBetween: 5
+						},
+
+						768: {
+							slidesPerView: 5,
+							spaceBetween: 5
+						},
+						1024: {
+							slidesPerView: 6,
+							spaceBetween: 10
+						}
+					}
+				});
+
+				var topswiper = new Swiper('.topslider > .swiper-container', {
+					nextButton: '.top-next',
+					prevButton: '.top-prev',
+					slidesPerView: 8,
+					paginationClickable: true,
+					preventClicks:false,
+					preventClicksPropagation:false,
+					spaceBetween: 10,
+					breakpoints: {
+						320: {
+							slidesPerView: 3,
+							spaceBetween: 5
+						},
+
+						480: {
+							slidesPerView: 3,
+							spaceBetween: 5
+						},
+
+						768: {
+							slidesPerView: 5,
+							spaceBetween: 5
+						},
+						1024: {
+							slidesPerView: 6,
+							spaceBetween: 10
+						}
+					}
+				});
+
+			});
+
+			
+		</script>
+
+
+	</div>
+</body>
+</html>
